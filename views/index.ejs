@@ -1,0 +1,51 @@
+<!-- 
+<% include ./partials/header.ejs %>
+   <div class="w-full h-screen bg-zinc-300 flex  items-center justify-center">
+      <div class="w-96  px-8 py-5 rounded-[30px] bg-zinc-100">
+        <h1 class="text-3xl  tracking-tight leading-none text-center font-semibold">Welcome to Pinterest.</h1>
+        <form action="/login" method="post" class="px-3 py-2">
+          <label for="username" class="text-zinc-800 font-bold">username</label> 
+          <input type="text" name="username"    class="px-3  mt-2 md:w-[300px] lg:w-[25vw] block rounded-md  py-2 outline-none border-[1px] border-zinc-700" id="" placeholder="Enter your Name">
+          <label for="password" class="text-zinc-800 font-bold">password</label> 
+          <input type="password" name="password" class="px-3 w-[22vw] block mt-2 py-2 rounded-md outline-none border-[1px] border-zinc-700" id="" placeholder="Enter your password">
+          <a href="#" class="mt-2 inline-block font-semibold text-zinc-800">Forgot Password ?</a>  
+          <input type="submit" name="" class="px-3 rounded-full w-full block bg-red-600 cursor-pointer mt-2 py-2 outline-none border-none text-white" value="Login">
+        <p class="mt-5 w-2/2 mx-auto text-md">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi odio debitis tenetur perferendis voluptates optio? Quae atque consectetur a laboriosam?</p>
+      <a href="/register" class="mt-7 inline-block font-semibold text-zinc-700 text-center w-full">Didn't have a account ?</a>  
+      </form>
+      </div>
+   </div>
+
+
+    <% include ./partials/footer.ejs %> -->
+
+
+    <% include ./partials/header.ejs %>
+<div class="min-h-screen bg-zinc-300 flex relative items-center justify-center px-4">
+  <% if (error && error.length > 0) { %>
+    <div class="bg-red-500 text-white absolute top-2 right-8 px-4 py-2 rounded mb-4">
+      <%= error %>
+    </div>
+  <% } %>
+  
+  <div class="w-full max-w-md px-6 py-5 rounded-[30px] bg-zinc-100">
+    <h1 class="text-3xl tracking-tight text-black leading-none text-center font-semibold">Welcome to Pinterest.</h1>
+    <form action="/login" method="post" class="space-y-4 mt-4">
+      <div>
+        <label for="username" class="text-zinc-800 font-bold block">Username</label> 
+        <input type="text" name="username" class="w-full text-black px-3 mt-1 py-2 rounded-md outline-none border border-zinc-700" placeholder="Enter your name">
+      </div>
+      <div>
+        <label for="password" class="text-zinc-800 font-bold block">Password</label> 
+        <input type="password" name="password" class="w-full px-3 text-black mt-1 py-2 rounded-md outline-none border border-zinc-700" placeholder="Enter your password">
+      </div>
+      <a href="#" class="text-sm inline-block font-semibold text-zinc-800">Forgot Password?</a>  
+      <input type="submit" value="Login" class="w-full bg-red-600  text-white py-2 rounded-full cursor-pointer">
+      <p class="text-sm mt-4 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi odio debitis tenetur perferendis voluptates optio?</p>
+      <a href="/register" class="block mt-4 text-center font-semibold text-zinc-700">Don't have an account?</a>
+    </form>
+  </div>
+</div>
+<% include ./partials/footer.ejs %>
+
+ 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Navbar</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-900 text-white">
+
+<% if(nav === true) { %>
+  <nav class="w-full px-6 py-4 flex items-center justify-between bg-zinc-800">
+    <h1 class="text-xl font-semibold">Pinterest</h1>
+    
+    <!-- Desktop menu -->
+    <div class="hidden md:flex gap-6 items-center">
+      <a href="/profile">Profile</a>
+      <a href="/feed">Feed</a>
+      <a href="/logout" class="px-3 py-1 rounded-lg bg-red-500 text-white">Logout</a>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button id="menu-toggle" class="md:hidden text-2xl">
+      <i class="ri-menu-line"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden items-center justify-center flex flex-col bg-zinc-700 px-6 py-4 space-y-3">
+    <a href="/profile">Profile</a>
+    <a href="/feed">Feed</a>
+    <a href="/logout" class="px-3 w-fit py-1 rounded-lg bg-red-500 text-white inline-block">Logout</a>
+  </div>
+<% } %>
+
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  toggleBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>
