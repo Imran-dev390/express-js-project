@@ -11,7 +11,7 @@ const connectionDb = require("./db/dbConnection");
 const flash = require("connect-flash");
 const dotenv = require("dotenv");
 var app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 console.log(process.env.PORT)
 
 // view engine setup
