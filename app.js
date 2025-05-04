@@ -11,7 +11,7 @@ const connectionDb = require("./db/dbConnection");
 const flash = require("connect-flash");
 const dotenv = require("dotenv");
 var app = express();
-
+const port = process.env.PORT;
 console.log(process.env.PORT)
 
 // view engine setup
@@ -56,4 +56,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+app.listen(port,()=>{
+  console.log("connected to server");
+})
