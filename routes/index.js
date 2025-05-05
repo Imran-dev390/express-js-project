@@ -124,7 +124,7 @@ router.post("/register", async (req, res, next) => {
 
 router.get("/profile",isLoggedIn, async (req,res)=>{
   const user = await  userModel.findOne({username:req.session.passport.user})
-      .populate("posts");
+      .populate("posts").lean();
   res.render("profile",{user,nav:true});
 })
 router.get("/user/posts",isLoggedIn, async (req,res)=>{
@@ -268,7 +268,7 @@ await user.save();
 
 
 
-router.post('/createpost', upload.single('postimage'), async (req, res) => {
+router.post('/createpost',isLoggedIn, upload.single('postimage'), async (req, res) => {
   try {
     const imageBuffer = req.file.buffer;
     const mimeType = req.file.mimetype;
