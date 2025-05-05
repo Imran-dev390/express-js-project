@@ -4,7 +4,7 @@ let userModel = require("./users");
 let passport = require('passport');
 let postModel = require("./post");
 let localstrategy = require("passport-local");
-//const upload = require('./multer');
+const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 /* GET home page. */
 passport.use(new localstrategy(userModel.authenticate()));
