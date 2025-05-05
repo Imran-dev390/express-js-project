@@ -272,17 +272,21 @@ router.post('/createpost',isLoggedIn, upload.single('postimage'), async (req, re
   try {
     const imageBuffer = req.file.buffer;
     const mimeType = req.file.mimetype;
-
+    const user = await  userModel.findOne({username:req.session.passport.user})
     // Convert image buffer to Base64 string (optional, if you want to render it directly in the frontend)
     const base64Image = imageBuffer.toString('base64');
     const post = await postModel.create({
+      user:user._id,
       title: req.body.title,
       desc: req.body.desc,
       image: {
         data: imageBuffer,
         contentType: mimeType,
       }
+
     });
+    user.posts.push(post._id);
+    await user.save();
     res.redirect('/profile');
   } catch (err) {
     console.error(err);

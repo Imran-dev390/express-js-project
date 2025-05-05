@@ -8,10 +8,8 @@
        <div class="w-52 h-40  rounded-lg overflow-hidden">
           <img src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>" class="w-full h-full object-cover" alt="">
        </div>
-       <% if (post.user && post.user.username) { %>
         <h5 class="text-xl font-semibold mt-5"><%= post.user.username %></h5>
         <h5 class="text-sm font-medium opacity-60"><%= post.title %></h5>
-      <% } %>
        <% if(isAdmin===true){ %>
         <a href="/delete/<%= post._id %>" class="px-5 py-1 bg-red-500 rounded-lg">Delete</a>
       <% } %>
