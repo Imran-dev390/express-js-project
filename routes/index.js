@@ -33,7 +33,7 @@ router.post("/register", async (req, res, next) => {
     }
 
     if (password.length < 8) {
-      req.flash("error", "Password must be at least 6 characters.");
+      req.flash("error", "Password must be at least 8 characters.");
       return res.redirect("/register");
     }
 

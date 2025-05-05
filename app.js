@@ -10,6 +10,7 @@ const passport = require('passport');
 const connectionDb = require("./db/dbConnection");
 const flash = require("connect-flash");
 const dotenv = require("dotenv");
+const flag  = 1;
 var app = express();
 const port = process.env.PORT || 3000;
 console.log(process.env.PORT)
