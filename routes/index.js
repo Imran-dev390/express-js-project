@@ -31,7 +31,10 @@ router.post("/register", async (req, res, next) => {
       req.flash("error", "All fields are required.");
       return res.redirect("/register");
     }
-
+    if(username.length < 3){
+      req.flash("error", "username must be at least 3 characters.");
+      return res.redirect("/register");
+    }
     if (password.length < 8) {
       req.flash("error", "Password must be at least 8 characters.");
       return res.redirect("/register");
