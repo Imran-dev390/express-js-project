@@ -9,7 +9,7 @@
          <i class="ri-pencil-fill bg-zinc-800"></i>
       </span>
 <div class="w-32 h-32 bg-zinc-200 overflow-hidden rounded-full">
-    <img class="w-full h-full object-cover" src="/images/<%=user.profileImage %>"  alt="">
+    <img class="w-full h-full object-cover" src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>"  alt="">
 </div>
    </div>
 <h1 class="text-3xl font-semibold mt-3 tracking-tight leading-none"><%= user.username %></h1> 

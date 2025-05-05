@@ -6,7 +6,10 @@ const userSchema = new mongoose.Schema({
   name:String,
   email:String,
   password:String,
-  profileImage:String,
+  profileImage:{
+      data: Buffer,
+      contentType: String,
+    },
   contact:Number,
   boards:{
     type:Array,

@@ -31,6 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(usersRouter.serializeUser());
 passport.deserializeUser(usersRouter.deserializeUser());
+app.use(express.urlencoded({extended:true}));
 app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());

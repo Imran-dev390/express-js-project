@@ -8,7 +8,10 @@ const postSchema = new mongoose.Schema({
     },
     title:String,
     desc:String,
-    image:String,
+    image: {
+        data: Buffer,
+        contentType: String
+      },
 
 })
 module.exports = mongoose.model("post",postSchema);

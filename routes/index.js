@@ -4,7 +4,8 @@ let userModel = require("./users");
 let passport = require('passport');
 let postModel = require("./post");
 let localstrategy = require("passport-local");
-const upload = require('./multer');
+//const upload = require('./multer');
+const upload = multer({ storage: multer.memoryStorage() });
 /* GET home page. */
 passport.use(new localstrategy(userModel.authenticate()));
 router.get('/', function(req, res, next) {
@@ -207,18 +208,50 @@ router.get('/logout',(req,res,next)=>{
  res.redirect("/");
   })
 })
-router.post("/fileupload",isLoggedIn,upload.single("image"),async (req,res)=>{
+/*router.post("/fileupload",isLoggedIn,upload.single("image"),async (req,res)=>{
  const user = await  userModel.findOne({username:req.session.passport.user})
+ const imageBuffer = req.file.buffer;
+ const mimeType = req.file.mimetype;
+ const base64Image = imageBuffer.toString('base64')
  user.profileImage = req.file.filename;
   //let file = req.file;
   await user.save();
   res.redirect("/profile")  
-})
+})*/
+
+router.post("/fileupload", isLoggedIn, upload.single("image"), async (req, res) => {
+  try {
+    const user = await userModel.findOne({ username: req.session.passport.user });
+
+    // Get the image buffer and MIME type from the uploaded file
+    const imageBuffer = req.file.buffer;
+    const mimeType = req.file.mimetype;
+
+    // Convert image buffer to Base64 string (optional, if you want to render it directly in the frontend)
+    const base64Image = imageBuffer.toString('base64');
+
+    // Save the image buffer and contentType (MIME type) directly to MongoDB
+    user.profileImage = {
+      data: imageBuffer,
+      contentType: mimeType
+    };
+
+    await user.save();
+
+    // Redirect to profile page after saving the profile image
+    res.redirect("/profile");
+
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    res.status(500).send("Something went wrong.");
+  }
+});
+
 router.get("/add",isLoggedIn,(req,res)=>{
   res.render('add',{nav:true});
 })
 
-router.post("/createpost",upload.single("postimage"),isLoggedIn,async (req,res)=>{
+/*router.post("/createpost",upload.single("postimage"),isLoggedIn,async (req,res)=>{
 //  let {title,desc,image} = req.body;
   const user = await  userModel.findOne({username:req.session.passport.user})
   const post = await postModel.create({
@@ -231,7 +264,27 @@ user.posts.push(post._id);
 await user.save();
 //user.profileImage = req.file.filename;
   res.redirect("/profile")
-})
+})*/
+
+
+
+router.post('/createpost', upload.single('postimage'), async (req, res) => {
+  try {
+    const post = await Post.create({
+      title: req.body.title,
+      desc: req.body.desc,
+      image: {
+        data: req.file.buffer,
+        contentType: req.file.mimetype
+      }
+    });
+
+    res.redirect('/profile');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Something went wrong.");
+  }
+});
 
 function isLoggedIn(req,res,next){
   if(req.isAuthenticated()){
