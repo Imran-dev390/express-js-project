@@ -6,7 +6,7 @@
       <% user.posts.forEach(function(post) { %>
         <div class="card flex flex-col items-center bg-zinc-800 p-4 rounded-lg shadow-lg text-white">
           <div class="w-full aspect-video rounded-lg overflow-hidden">
-            <img src="data:<%= post.image.contentType %>;base64,<%= post.image.data.toString('base64') %>" class="w-full h-full object-cover" alt="">
+            <img src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>" class="w-full h-full object-cover" alt="">
           </div>
           <h5 class="text-lg font-semibold mt-4 text-center"><%= post.title %></h5>
           <p class="text-sm text-gray-300 mt-2 text-center"><%= post.desc %></p>
