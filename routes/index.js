@@ -139,7 +139,7 @@ router.get("/feed",isLoggedIn,async (req,res)=>{
  // .populate("user");
   const posts = await postModel.find().populate("user");
   //console.log(posts.user.username);
-  console.log("posts",posts)
+  //console.log("posts",posts)
   const admin = "imran";
   const user = await userModel.findOne({username:req.session.passport.user})
   if(user.username === admin){
@@ -289,8 +289,6 @@ router.post('/createpost',upload.single('postimage'), async (req, res) => {
     });
     console.log(post);
     user.posts.push(post._id);
-    post.user.push(user._id);
-    await post.save();
     await user.save();
     res.redirect('/profile');
   } catch (err) {
