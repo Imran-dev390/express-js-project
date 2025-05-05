@@ -6,7 +6,7 @@
   <% posts.reverse().forEach(function(post) { %>
     <div class="card flex items-center flex-col">
        <div class="w-52 h-40  rounded-lg overflow-hidden">
-          <img src="data:<%= post.user.image.contentType %>;base64,<%= posts.user.image.data.toString('base64') %>" class="w-full h-full object-cover" alt="">
+          <img src="data:<%= post.image %>;base64,<%= post.image.data.toString('base64') %>" class="w-full h-full object-cover" alt="">
        </div>
         <h5 class="text-xl font-semibold mt-5"><%= post.user.username %></h5>
         <h5 class="text-sm font-medium opacity-60"><%= post.title %></h5>
