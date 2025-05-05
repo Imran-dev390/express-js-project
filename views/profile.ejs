@@ -8,9 +8,22 @@
       <span id="updatePic" class="h-8 w-8 absolute flex items-center justify-center right-0 bottom-0 rounded-full  bg-zinc-200">
          <i class="ri-pencil-fill bg-zinc-800"></i>
       </span>
-<div class="w-32 h-32 bg-zinc-200 overflow-hidden rounded-full">
-    <img class="w-full h-full object-cover" src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>"  alt="">
-</div>
+      <div class="w-32 h-32 bg-zinc-200 overflow-hidden rounded-full">
+         <% if (user.profileImage && user.profileImage.data) { %>
+           <img 
+             class="w-full h-full object-cover"
+             src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>" 
+             alt="Profile Image"
+           />
+         <% } else { %>
+           <img 
+             class="w-full h-full object-cover"
+             src="/default-avatar.png"  
+             alt="Default Avatar"
+           />
+         <% } %>
+       </div>
+       
    </div>
 <h1 class="text-3xl font-semibold mt-3 tracking-tight leading-none"><%= user.username %></h1> 
 <h3 class="text-md mt-1">@username</h3>
