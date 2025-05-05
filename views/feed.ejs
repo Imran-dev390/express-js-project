@@ -2,7 +2,7 @@
 
 
 <div class="cards flex flex-wrap px-10  mt-10 gap-10">
-    <% if(posts.length > 0){ %>
+    <% if(posts && posts.length > 0){ %>
   <% posts.reverse().forEach(function(post) { %>
     <div class="card flex items-center flex-col">
        <div class="w-52 h-40  rounded-lg overflow-hidden">
@@ -11,7 +11,7 @@
        <% if (post.user && post.user.username) { %>
         <h5 class="text-xl font-semibold mt-5"><%= post.user.username %></h5>
         <h5 class="text-sm font-medium opacity-60"><%= post.title %></h5>
-      <% }
+      <% } %>
        <% if(isAdmin===true){ %>
         <a href="/delete/<%= post._id %>" class="px-5 py-1 bg-red-500 rounded-lg">Delete</a>
       <% } %>
