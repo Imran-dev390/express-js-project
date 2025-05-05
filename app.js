@@ -25,7 +25,7 @@ app.set('view engine', 'ejs');
 app.use(session({
    resave:false,
    saveUninitialized:false,
-   secret:"pushparaj sohnalfakeer"
+   secret:"pushparaj sohnalfakeerkjasdnfkasndkjfnaswkenkaw"
 }))
 app.use(passport.initialize());
 app.use(passport.session());

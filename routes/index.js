@@ -270,7 +270,7 @@ await user.save();
 
 router.post('/createpost', upload.single('postimage'), async (req, res) => {
   try {
-    const post = await Post.create({
+    const post = await postModel.create({
       title: req.body.title,
       desc: req.body.desc,
       image: {
