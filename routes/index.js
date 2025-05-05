@@ -268,7 +268,7 @@ await user.save();
 
 
 
-router.post('/createpost',isLoggedIn, upload.single('postimage'), async (req, res) => {
+router.post('/createpost',upload.single('postimage'), async (req, res) => {
   try {
     const imageBuffer = req.file.buffer;
     const mimeType = req.file.mimetype;
