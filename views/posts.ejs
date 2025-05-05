@@ -5,13 +5,12 @@
     <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <% user.posts.forEach(function(post) { %>
         <div class="card flex flex-col items-center bg-zinc-800 p-4 rounded-lg shadow-lg text-white">
-          <div class="w-full aspect-video rounded-lg overflow-hidden">
-         <!--   <img src="data:<%= post.user.image.contentType %>;base64,<%= post.user.image.data.toString('base64') %>" class="w-full h-full object-cover" alt=""> -->
-         <img src="data:<%= post.image %>;base64,<%= post.image.data.toString('base64') %>" />
-          </div>
+         
+            <img src="data:<%= post.image.contentType %>;base64,<%= post.image.data.toString('base64') %>" class="w-full h-full object-cover" alt="">
+          
           <h5 class="text-lg font-semibold mt-4 text-center"><%= post.title %></h5>
           <p class="text-sm text-gray-300 mt-2 text-center"><%= post.desc %></p>
-          <h5 class="text-lg font-semibold mt-4 text-center"><%= post.username %></h5>
+          <h5 class="text-lg font-semibold mt-4 text-center"><%= user.username %></h5>
         </div>
       <% }) %>
     </div>

@@ -1,15 +1,20 @@
 <% include ./partials/header.ejs %>
 
 
-<div class="cards flex flex-wrap px-10  mt-10 gap-10">
+<div class="cards flex  flex-wrap px-10  mt-10 gap-10">
     <% if(posts && posts.length > 0){ %>
   <% posts.reverse().forEach(function(post) { %>
-    <div class="card flex items-center flex-col">
+    <div class="card flex shadow-2xl  px-5 py-2 items-center flex-col">
        <div class="w-52 h-40  rounded-lg overflow-hidden">
-          <img src="data:<%= post.image %>;base64,<%= post.image.data.toString('base64') %>" class="w-full h-full object-cover" alt="">
+        <img 
+        src="data:<%= post.image.contentType %>;base64,<%= post.image.data.toString('base64') %>" 
+        class="w-full h-full object-cover" 
+        alt="Post image"
+      >
        </div>
         <h5 class="text-xl font-semibold mt-5"><%= post.user.username %></h5>
         <h5 class="text-sm font-medium opacity-60"><%= post.title %></h5>
+        <h5 class="text-sm font-medium opacity-60"><%= post.desc %></h5>
        <% if(isAdmin===true){ %>
         <a href="/delete/<%= post._id %>" class="px-5 py-1 bg-red-500 rounded-lg">Delete</a>
       <% } %>

@@ -130,6 +130,8 @@ router.get("/profile",isLoggedIn, async (req,res)=>{
 router.get("/user/posts",isLoggedIn, async (req,res)=>{
    const user = await userModel.findOne({username:req.session.passport.user})
   .populate("posts");
+  console.log("username",user.username);
+  console.log("roite error",user);
   res.render("posts",{user,nav:true}); 
 })
 router.get("/feed",isLoggedIn,async (req,res)=>{
@@ -137,9 +139,9 @@ router.get("/feed",isLoggedIn,async (req,res)=>{
  // .populate("user");
   const posts = await postModel.find().populate("user");
   //console.log(posts.user.username);
+  console.log("posts",posts)
   const admin = "imran";
   const user = await userModel.findOne({username:req.session.passport.user})
-  //console.log(posts)
   if(user.username === admin){
  return res.render("feed",{posts,nav:true,isAdmin:true});
   }
@@ -285,7 +287,10 @@ router.post('/createpost',upload.single('postimage'), async (req, res) => {
       }
 
     });
+    console.log(post);
     user.posts.push(post._id);
+    post.user.push(user._id);
+    await post.save();
     await user.save();
     res.redirect('/profile');
   } catch (err) {
