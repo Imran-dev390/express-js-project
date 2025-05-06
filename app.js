@@ -12,6 +12,7 @@ const flash = require("connect-flash");
 const dotenv = require("dotenv");
 const flag  = 1;
 var app = express();
+const arr = 2;
 const port = process.env.PORT || 3000;
 console.log(process.env.PORT)
 

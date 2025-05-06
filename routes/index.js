@@ -5,6 +5,7 @@ let passport = require('passport');
 let postModel = require("./post");
 let localstrategy = require("passport-local");
 const mern = "mern";
+const stack = "mern";
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 /* GET home page. */
